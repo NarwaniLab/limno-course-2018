@@ -39,6 +39,14 @@ counts <- all_sorted_all %>%
 counts_all <- left_join(counts, plate_key3, by = "well") %>% 
 	mutate(cells_per_ml = n*40)
 
+counts_all <- left_join(counts, plate_key3, by = "well") %>% 
+	mutate(cells_per_ml = n*40)
+
+counts_all2 <- left_join(counts, plate_key2, by = "well") %>% 
+	mutate(cells_per_ml = n*40)
+write_csv(counts_all2, "data-processed/cell_counts_only.csv")
+
+
 write_csv(counts_all, "data-processed/cell_counts.csv")
 
 
