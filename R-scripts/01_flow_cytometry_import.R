@@ -19,7 +19,7 @@ read_fcs <- function(file) {
 
 
 
-fcs_files_all <- c(list.files("data-raw/",
+fcs_files_all <- c(list.files("data-raw/flow-cytometry/",
 							  full.names = TRUE, pattern = ".fcs$", recursive = TRUE))
 
 
