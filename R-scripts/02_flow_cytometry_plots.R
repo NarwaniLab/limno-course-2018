@@ -19,16 +19,18 @@ all_fcs3_all <- all_particles %>%
 
 all_fcs3_all %>% 
 	dplyr::filter(well == "A04") %>% 
-	ggplot(aes(x = fl1_a, y = fl3_a)) + geom_point() + scale_y_log10() + scale_x_log10()
+	ggplot(aes(x = fl1_a, y = fl3_a)) + geom_point() + scale_y_log10() + scale_x_log10() +
+	geom_hline(yintercept = 1250)
 
  sorted_all <- all_fcs3_all %>% 
 	mutate(type = NA) %>% 
 	mutate(type = ifelse(fl3_a > 1250, "algae", type)) 
 
-all_sorted_all <- left_join(sorted_all, all_treatments, by = "well") %>% 
-	dplyr::filter(!grepl("A", well)) %>% 
-	mutate(plate = as.integer(plate))
+all_sorted_all <- left_join(sorted_all, plate_key2, by = "well") 
 
-str(all_sorted_all)
 
-all_sorted2 <- left_join(all_sorted_all, plate_key, by = "plate")
+counts <- all_sorted_all %>% 
+	mutate(type = ifelse(is.na(type), "background", type)) %>% 
+	group_by(well, type) %>% 
+	tally() %>% 
+	dplyr::filter(type == "algae")
