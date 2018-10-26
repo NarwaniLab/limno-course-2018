@@ -1,6 +1,4 @@
 # limno-course-2018
-data and code for student lab experiments
-
 
 This repository contains data and code to process and plot flow cytometry data 
 
