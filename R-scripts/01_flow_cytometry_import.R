@@ -38,5 +38,7 @@ all_fcs2_all <- all_fcs_all %>%
 	separate(day_well, into = c("day", "well"), sep = "/", remove = FALSE) %>%
 	mutate(day = str_replace(day, "day-", ""))
 
+
+
 ### write out the processed data
 write_csv(all_fcs2_all, "data-processed/particles.csv")
