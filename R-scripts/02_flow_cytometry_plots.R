@@ -1,7 +1,11 @@
 ### Flow cytometry data visualization
 library(tidyverse)
 
-all_particles <- read_csv("data-processed/particles.csv")
+day0_1 <- read_csv("data-processed/particles_day_0_1.csv")
+day2_7 <- read_csv("data-processed/particles_day_2_7.csv")
+
+all_particles <- bind_rows(day0_1, day2_7)
+
 sample_key <- read_csv("data-raw/Limno-2018.csv")
 plate_key <- read_csv("data-raw/limno-96-well-plate-key.csv")
 
