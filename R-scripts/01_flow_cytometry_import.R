@@ -38,7 +38,14 @@ all_fcs2_all <- all_fcs_all %>%
 	separate(day_well, into = c("day", "well"), sep = "/", remove = FALSE) %>%
 	mutate(day = str_replace(day, "day-", ""))
 
+day0_1 <- all_fcs2_all %>% 
+	dplyr::filter(day %in% c(0,1))
 
+write_csv(day0_1, "data-processed/particles_day_0_1.csv")
 
+day2_7 <- all_fcs2_all %>% 
+	dplyr::filter(day %in% c(2,7))
+
+write_csv(day2_7, "data-processed/particles_day_2_7.csv")
 ### write out the processed data
-write_csv(all_fcs2_all, "data-processed/particles.csv")
+# write_csv(all_fcs2_all, "data-processed/particles.csv")
